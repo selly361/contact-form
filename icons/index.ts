@@ -1,0 +1,1 @@
+export { default as SuccessCheckIcon } from './icon-success-check.svg'
