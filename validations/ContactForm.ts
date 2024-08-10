@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 export const ContactFormValidation = z.object({
 	firstName: z
@@ -33,3 +34,4 @@ export const ContactFormValidation = z.object({
 })
 
 export type FormValues = z.infer<typeof ContactFormValidation>
+export const resolver = zodResolver(ContactFormValidation)
