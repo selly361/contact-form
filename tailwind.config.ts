@@ -37,6 +37,14 @@ const config: Config = {
 					}
 				]
 			},
+			width: {
+				'form': '736px',
+				'field': '320px'
+			},
+			height: {
+				'field': '51px',
+				'textarea': '105px'
+			},
 			backgroundImage: {
 				'checkbox': "url('/icon-checkbox-check.svg')"
 			}
