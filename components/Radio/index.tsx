@@ -8,27 +8,22 @@ interface RadioProps {
 }
 
 const Radio = ({ value, label }: RadioProps) => {
-	const { setValue, watch, getValues } = useFormContext()
+	const { watch, register } = useFormContext()
 
 	const query = watch('queryType')
 
-	console.log(getValues())
-
 	return (
 		<label
-			htmlFor={`${value}`}
-			onClick={() => setValue('queryType', value)}
 			className={clsx(
 				'radio-label',
 				value === query ? 'radio-label--active' : ''
 			)}
 		>
 			<input
-				name='queryType'
 				type='radio'
-				id={`${value}`}
+				value={value}
 				className='radio-input'
-				value={query}
+				{...register('queryType')}
 			/>
 			<div className='radio-custom' />
 			<p className='radio-text'>{label}</p>
