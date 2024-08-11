@@ -28,7 +28,7 @@ export const ContactFormValidation = z.object({
 		.trim()
 		.min(1, 'Message is required')
 		.max(2000, 'Message must be less than 2000 characters'),
-	consent: z.boolean().refine((value) => value === true, {
+	consent: z.boolean().default(false).refine((value) => value === true, {
 		message: 'To submit this form, please consent to being contacted'
 	})
 })
