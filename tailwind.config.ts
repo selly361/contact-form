@@ -17,10 +17,13 @@ const config: Config = {
 					200: '#E0F1E8',
 					600: '#0C7D69'
 				},
-				red: '#D73C3C'
+				red: '#D73C3C',
+				checkbox: '#0C7D69',
+				buttonHover:
+					'linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #0C7D69'
 			},
 			fontSize: {
-				'heading': [
+				heading: [
 					'32px',
 					{
 						lineHeight: '100%',
@@ -38,15 +41,17 @@ const config: Config = {
 				]
 			},
 			width: {
-				'form': '736px',
-				'field': '320px'
+				form: '736px',
+				field: '320px',
+				'success-message': '450px'
 			},
 			height: {
-				'field': '51px',
-				'textarea': '105px'
+				field: '51px',
+				textarea: '105px',
+				'success-message': '107px'
 			},
 			backgroundImage: {
-				'checkbox': "url('/icon-checkbox-check.svg')"
+				checkbox: "url('/icon-checkbox-check.svg')"
 			}
 		}
 	},
