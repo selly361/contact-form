@@ -4,6 +4,7 @@ import { FormValues, resolver } from '@/validations'
 import { PropsWithChildren, createContext, useContext, useState } from 'react'
 
 import { FormContextType } from './context.types'
+import { SuccessMessage } from '@/components'
 import { addContactForm } from '@/actions'
 import { useForm } from 'react-hook-form'
 
@@ -11,28 +12,31 @@ const FormContext = createContext<FormContextType | undefined>(undefined)
 
 export const FormProvider = ({ children }: PropsWithChildren) => {
 	const [loading, setLoading] = useState(false)
-    const [formSubmitted, setFormSubmitted] = useState(false)
+	const [formSubmitted, setFormSubmitted] = useState(false)
 
 	const formMethods = useForm<FormValues>({
 		mode: 'all',
 		resolver
 	})
 
-	const handleFormSubmit = formMethods.handleSubmit(async (data: FormValues) => {
-		try {
+	const handleFormSubmit = formMethods.handleSubmit(
+		async (data: FormValues) => {
 			setLoading(true)
 
-			const result = await addContactForm(data)
+			await addContactForm(data)
 
-			console.log('Form submitted successfully:', result)
-			formMethods.reset() 
-		} catch (error) {
-			console.error('Form submission error:', error)
-		} finally {
-			setLoading(false)
-            setFormSubmitted(true)
+			formMethods.reset()
+
+			setTimeout(() => {
+				setFormSubmitted(true)
+				setLoading(false)
+
+				setTimeout(() => {
+					setFormSubmitted(false)
+				}, 2000)
+			}, 1000)
 		}
-	})
+	)
 
 	return (
 		<FormContext.Provider
@@ -42,6 +46,7 @@ export const FormProvider = ({ children }: PropsWithChildren) => {
 				handleFormSubmit
 			}}
 		>
+			<SuccessMessage />
 			{children}
 		</FormContext.Provider>
 	)
