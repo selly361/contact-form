@@ -1,3 +1,101 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	/* Form Components */
+
+	.fieldset-xsm {
+		@apply flex flex-col gap-2;
+	}
+
+	.fieldset-sm {
+		@apply flex gap-4 items-center;
+	}
+
+	.fieldset-md {
+		@apply flex flex-col;
+	}
+
+	/* Field Inputs */
+
+	.field {
+		@apply w-field h-field rounded-lg outline-none border border-grey-500 focus:border-green-600 
+        transition-colors duration-300 ease-in-out px-6 py-3 my-2 block;
+	}
+
+	.textarea {
+		@apply field resize-none h-textarea w-full;
+	}
+
+	.error {
+		@apply border-red focus:border-red;
+	}
+
+	/* Radio */
+
+	.radio-label {
+		@apply field flex items-center gap-3 cursor-pointer;
+	}
+
+	.radio-label--active {
+		@apply border-green-600 bg-green-200;
+	}
+
+	.radio-custom {
+		@apply h-5 w-5 border-2 border-grey-500 rounded-full relative;
+	}
+
+	.radio-input:checked + .radio-custom {
+		@apply border-green-600;
+	}
+
+	.radio-custom::before {
+		content: '';
+		@apply w-0 h-0 bg-green-600 rounded-full absolute inset-0 m-auto transition-all duration-100 ease-in-out;
+	}
+
+	.radio-input:checked + .radio-custom::before {
+		@apply w-2.5 h-2.5;
+	}
+
+	.radio-label:hover {
+		border-color: #38a89d;
+	}
+
+	/* Checkbox */
+
+	.custom-checkbox {
+		@apply transition-colors duration-300 ease-in-out w-max flex items-center gap-3 cursor-pointer;
+	}
+
+	.custom-checkbox__checkbox {
+		@apply border-2 border-grey-500 h-6 w-6 rounded transition-colors duration-300 ease-in-out cursor-pointer;
+	}
+
+	input[type='checkbox']:checked ~ .custom-checkbox__checkbox {
+		@apply bg-checkbox border-checkbox bg-no-repeat bg-center;
+	}
+
+	.custom-checkbox,
+	.radio-label,
+	button {
+		@apply focus-within:outline-2 focus-within:outline-dashed focus-within:outline-green-600 focus-within:outline-offset-2;
+	}
+
+	.custom-checkbox:disabled {
+		@apply brightness-75;
+	}
+
+	body {
+		@apply text-body-m text-grey-900;
+	}
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
